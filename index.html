@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Фобошная в Отрадном</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Layout: neighbourhood pho shop — ochre walls, brick-orange facade, red paper fans and conical-hat lamps; build-your-bowl toy, dishes from reviews, app/pickup band. */
+:root{
+  --bg:#FBF3E3;
+  --card:#FFFDF8;
+  --fg:#1A1512;
+  --muted:#6C5E52;
+  --line:#EBDCC3;
+  --ochre:#E6A63A;
+  --brick:#C4552F;
+  --fan:#D3362B;
+  --leaf:#3F7A4B;
+  --display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --body:"Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#191411;--card:#231C17;--fg:#F6ECDD;--muted:#BBA997;--line:#3A2E25;
+  --ochre:#EDB24F;--brick:#E07650;--fan:#EE5A4E;--leaf:#79B786;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191411;--card:#231C17;--fg:#F6ECDD;--muted:#BBA997;--line:#3A2E25;
+  --ochre:#EDB24F;--brick:#E07650;--fan:#EE5A4E;--leaf:#79B786;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:1060px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.1;text-wrap:balance}
+a{color:var(--brick)}
+:focus-visible{outline:3px solid var(--leaf);outline-offset:3px}
+
+.demo{font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
+.demo .wrap{padding-block:7px}
+
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:16px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .ring{width:48px;height:48px;border-radius:50%;border:2.5px solid var(--fg);display:grid;place-items:center;font-family:var(--display);font-size:12px;line-height:1;text-align:center;position:relative}
+.logo .ring::after{content:"";position:absolute;width:2px;height:58px;background:var(--fg);transform:rotate(28deg);left:30px;top:-6px;border-radius:2px}
+.logo b{font-family:var(--display);font-size:20px}
+.logo small{display:block;color:var(--muted);font-size:13px}
+.callbtn{background:var(--fg);color:var(--bg);text-decoration:none;font-weight:800;padding:10px 16px;border-radius:999px;font-variant-numeric:tabular-nums}
+
+/* hats strip */
+.hats{height:64px;overflow:hidden}
+.hats svg{display:block;width:100%;height:64px}
+
+.hero{background:var(--ochre);color:#1A1512}
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:36px;align-items:center;padding-block:44px 52px}
+.kick{font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:13px;color:#7A2E16}
+.hero h1{font-size:clamp(34px,5.6vw,64px);margin-top:12px}
+.hero p{font-size:19px;max-width:30em;margin:16px 0 0;color:#3A2A1E}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{font:inherit;font-weight:800;text-decoration:none;padding:12px 20px;border-radius:999px;border:2.5px solid currentColor;background:none;color:inherit;cursor:pointer}
+.btn.solid{background:#1A1512;border-color:#1A1512;color:#FBF3E3}
+.facts{display:flex;gap:26px;flex-wrap:wrap;margin-top:24px}
+.facts div{display:flex;flex-direction:column}
+.facts b{font-family:var(--display);font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.facts span{font-size:14px;color:#4A3828}
+.cat{width:100%;max-width:360px;justify-self:center;height:auto}
+
+section{padding-block:60px}
+section + section{border-top:1px solid var(--line)}
+section h2{font-size:clamp(26px,4vw,42px)}
+.sub{color:var(--muted);max-width:40em;margin:10px 0 0}
+
+/* bowl builder */
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px;align-items:center}
+.opts{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:18px}
+.grp{display:grid;gap:8px}
+.grp > span{font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:inherit;font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--brick);border-color:var(--brick);color:#fff}
+.bowl{display:grid;gap:12px;justify-items:center;text-align:center}
+.bowl svg{width:100%;max-width:380px;height:auto}
+.bowl .name{font-family:var(--display);font-size:22px}
+.bowl .desc{color:var(--muted);margin:0;max-width:26em}
+
+/* dishes */
+.dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.dish{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:6px;align-content:start}
+.dish h3{font-size:18px}
+.dish p{margin:0;color:var(--muted);font-size:15px}
+.dish .pr{font-family:var(--display);font-size:16px;color:var(--brick);font-variant-numeric:tabular-nums}
+.dish .badge{justify-self:start;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--leaf)}
+
+/* app band */
+.app{background:#161210;color:#FBF3E3;border-radius:26px;padding:28px;display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;margin-top:8px}
+.app .big{font-family:var(--display);font-size:clamp(44px,8vw,72px);color:var(--ochre);line-height:1}
+.app h3{font-size:22px}
+.app p{margin:6px 0 0;color:#D6C7B3}
+.app .btn{color:#FBF3E3}
+
+/* reviews */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;position:relative}
+blockquote::before{content:"“";position:absolute;top:-6px;left:16px;font-family:var(--display);font-size:56px;color:var(--fan);line-height:1}
+blockquote p{margin:18px 0 0;font-size:19px;font-weight:600;line-height:1.35}
+blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:14px;color:var(--muted)}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;margin-top:28px}
+dl{margin:0;display:grid;gap:12px}
+.row{display:grid;grid-template-columns:110px 1fr;gap:12px}
+.row dt{color:var(--muted)}
+.row dd{margin:0;font-weight:600;min-width:0}
+.brickcard{background:var(--brick);color:#fff;border-radius:22px;padding:24px;display:grid;gap:10px;
+  background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:100% 22px,44px 22px}
+.brickcard h3{font-size:22px}
+.brickcard p{margin:0}
+.copy{font:inherit;font-size:13px;cursor:pointer;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:2px 10px;margin-left:8px}
+footer .wrap{padding-block:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+
+@media (max-width:860px){.dishes,.quotes{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){
+  .hero .wrap,.builder,.visit{grid-template-columns:1fr}
+  .cat{max-width:220px;order:-1}
+  .dishes,.quotes{grid-template-columns:1fr}
+  .app{grid-template-columns:1fr}
+  .row{grid-template-columns:96px 1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .steam{animation:rise 3s ease-in-out infinite}
+  .steam:nth-of-type(2){animation-delay:1s}.steam:nth-of-type(3){animation-delay:2s}
+  @keyframes rise{0%,100%{opacity:.2;transform:translateY(4px)}50%{opacity:.8;transform:translateY(-6px)}}
+  .paw{transform-box:fill-box;transform-origin:bottom;animation:wave 1.6s ease-in-out infinite}
+  @keyframes wave{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(12deg)}}
+}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap">Демо-версия сайта. Полное меню с ценами добавляется после согласования с кафе.</div></div>
+
+<header class="top"><div class="wrap">
+  <div class="logo"><div class="ring" aria-hidden="true">ФО<br>БО</div><div><b>Фобошная</b><small>вьетнамская кухня · Отрадное</small></div></div>
+  <a class="callbtn" href="tel:+79855655587">+7 (985) 565-55-87</a>
+</div></header>
+
+<div class="hero">
+  <div class="hats" aria-hidden="true">
+    <svg viewBox="0 0 1000 64" preserveAspectRatio="xMidYMin slice">
+      <line x1="0" y1="2" x2="1000" y2="2" stroke="#7A2E16" stroke-width="2"/>
+      <g stroke="#7A2E16" stroke-width="1.5">
+        <line x1="70" y1="2" x2="70" y2="18"/><line x1="200" y1="2" x2="200" y2="28"/><line x1="330" y1="2" x2="330" y2="14"/>
+        <line x1="470" y1="2" x2="470" y2="24"/><line x1="610" y1="2" x2="610" y2="16"/><line x1="750" y1="2" x2="750" y2="26"/><line x1="890" y1="2" x2="890" y2="14"/>
+      </g>
+      <path d="M40 34 L70 18 L100 34 Z" fill="#F4E2B8"/><circle cx="200" cy="40" r="12" fill="#D3362B"/>
+      <path d="M300 30 L330 14 L360 30 Z" fill="#F4E2B8"/><path d="M440 40 L470 24 L500 40 Z" fill="#F4E2B8"/>
+      <circle cx="610" cy="28" r="12" fill="#3F7A4B"/><path d="M720 42 L750 26 L780 42 Z" fill="#F4E2B8"/><circle cx="890" cy="26" r="12" fill="#D3362B"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div>
+      <div class="kick">ул. Римского-Корсакова, 11 к7 · м. Отрадное</div>
+      <h1>Фо бо с честным бульоном на костях</h1>
+      <p>Вьетнамское кафе у вас во дворе: огромные порции, том ям, пад тай, спринг-роллы и кофе по-вьетнамски со сгущёнкой. Интерьер хозяева придумали и собрали своими руками.</p>
+      <div class="cta">
+        <a class="btn solid" href="#bowl">Собрать свой фо</a>
+        <a class="btn" href="tel:+79855655587">Заказать с собой</a>
+      </div>
+      <div class="facts">
+        <div><b>5,0</b><span>67 оценок</span></div>
+        <div><b>11:00–23:00</b><span>ежедневно</span></div>
+        <div><b>от 700 ₽</b><span>средний чек</span></div>
+      </div>
+    </div>
+    <svg class="cat" viewBox="0 0 220 220" role="img" aria-label="Котик удачи с палочками, как на стене в кафе">
+      <path d="M150 30 l18 -6 a50 50 0 0 1 -8 56 Z" fill="#D3362B"/>
+      <g fill="none" stroke="#7A2E16" stroke-width="1.2"><path d="M150 30 L158 70"/><path d="M158 26 L162 66"/><path d="M164 25 L165 62"/></g>
+      <ellipse cx="100" cy="196" rx="80" ry="12" fill="#C4552F" opacity=".35"/>
+      <rect x="40" y="110" width="120" height="86" rx="40" fill="#FFFDF8" stroke="#1A1512" stroke-width="3"/>
+      <circle cx="100" cy="86" r="52" fill="#FFFDF8" stroke="#1A1512" stroke-width="3"/>
+      <path d="M58 54 L62 22 L84 42 Z M142 54 L138 22 L116 42 Z" fill="#FFFDF8" stroke="#1A1512" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M60 46 C70 28 130 28 140 46 C120 40 80 40 60 46 Z" fill="#E6A63A" stroke="#1A1512" stroke-width="2"/>
+      <path d="M82 86 q6 -6 12 0 M106 86 q6 -6 12 0" fill="none" stroke="#1A1512" stroke-width="3" stroke-linecap="round"/>
+      <path d="M96 100 q4 4 8 0" fill="none" stroke="#1A1512" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="74" cy="100" r="6" fill="#F2A6A0"/><circle cx="126" cy="100" r="6" fill="#F2A6A0"/>
+      <g class="paw"><rect x="146" y="96" width="24" height="40" rx="12" fill="#FFFDF8" stroke="#1A1512" stroke-width="3"/>
+      <line x1="150" y1="98" x2="176" y2="60" stroke="#7A2E16" stroke-width="3" stroke-linecap="round"/><line x1="156" y1="100" x2="186" y2="66" stroke="#7A2E16" stroke-width="3" stroke-linecap="round"/></g>
+      <circle cx="100" cy="150" r="16" fill="#E6A63A" stroke="#1A1512" stroke-width="2.5"/>
+      <text x="100" y="155" text-anchor="middle" font-family="Unbounded, sans-serif" font-size="11" font-weight="700" fill="#1A1512">ФО</text>
+    </svg>
+  </div>
+</div>
+
+<section id="bowl"><div class="wrap">
+  <h2>Собери свой фо</h2>
+  <p class="sub">Выберите основу и добавки. Это подсказка для заказа: покажите её на кассе или скажите по телефону.</p>
+  <div class="builder">
+    <div class="opts">
+      <div class="grp"><span id="g1">Основа</span>
+        <div class="chips" role="group" aria-labelledby="g1" data-key="base">
+          <button type="button" id="b1" aria-pressed="true" data-v="bo">Фо бо, говядина</button>
+          <button type="button" id="b2" aria-pressed="false" data-v="bofry">Фо бо, жареная говядина</button>
+          <button type="button" id="b3" aria-pressed="false" data-v="ga">Фо га, курица</button>
+          <button type="button" id="b4" aria-pressed="false" data-v="tom">Том ям с морепродуктами</button>
+        </div></div>
+      <div class="grp"><span id="g2">Острота</span>
+        <div class="chips" role="group" aria-labelledby="g2" data-key="hot">
+          <button type="button" id="h1" aria-pressed="false" data-v="0">Без остроты</button>
+          <button type="button" id="h2" aria-pressed="true" data-v="1">Средне</button>
+          <button type="button" id="h3" aria-pressed="false" data-v="2">Остро</button>
+        </div></div>
+      <div class="grp"><span id="g3">Добавить</span>
+        <div class="chips" role="group" aria-labelledby="g3" data-key="add" data-multi="1">
+          <button type="button" id="a1" aria-pressed="true" data-v="lime">Лайм</button>
+          <button type="button" id="a2" aria-pressed="true" data-v="herbs">Зелень</button>
+          <button type="button" id="a3" aria-pressed="false" data-v="sprouts">Ростки сои</button>
+          <button type="button" id="a4" aria-pressed="false" data-v="ginger">Имбирь</button>
+        </div></div>
+    </div>
+    <div class="bowl">
+      <svg viewBox="0 0 300 230" aria-hidden="true" id="bowlSvg">
+        <path class="steam" d="M110 50 q-10 -14 0 -28" fill="none" stroke="var(--muted)" stroke-width="3" stroke-linecap="round"/>
+        <path class="steam" d="M150 44 q-10 -14 0 -28" fill="none" stroke="var(--muted)" stroke-width="3" stroke-linecap="round"/>
+        <path class="steam" d="M190 50 q-10 -14 0 -28" fill="none" stroke="var(--muted)" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="150" cy="96" rx="128" ry="34" id="broth" fill="#D99A4E"/>
+        <g id="noodles" fill="none" stroke="#F6EEDC" stroke-width="3" opacity=".9">
+          <path d="M60 96 q30 -12 60 0 t60 0 t60 0"/><path d="M70 106 q30 -10 60 0 t60 0 t50 0"/>
+        </g>
+        <g id="meat"></g><g id="extras"></g>
+        <path d="M22 96 C30 190 270 190 278 96 Z" fill="var(--fan)"/>
+        <path d="M40 130 C60 172 240 172 260 130" fill="none" stroke="#FBF3E3" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <rect x="110" y="178" width="80" height="14" rx="6" fill="var(--fan)"/>
+        <line x1="210" y1="20" x2="268" y2="120" stroke="#7A4A22" stroke-width="5" stroke-linecap="round"/>
+        <line x1="226" y1="16" x2="276" y2="112" stroke="#7A4A22" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <div class="name" id="bowlName">Фо бо с говядиной</div>
+      <p class="desc" id="bowlDesc">Средняя острота · лайм, зелень</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="dishes"><div class="wrap">
+  <h2>Что заказывают соседи</h2>
+  <p class="sub">Блюда, которые чаще всего хвалят в отзывах, и закуски из меню доставки.</p>
+  <div class="dishes">
+    <div class="dish"><span class="badge">суп</span><h3>Фо бо с жареной говядиной</h3><p>«Мой личный топ»: большой объём, насыщенный бульон.</p></div>
+    <div class="dish"><span class="badge">суп</span><h3>Том ям</h3><p>Креветки, морепродукты, грибы, рис и лайм.</p></div>
+    <div class="dish"><span class="badge">вок</span><h3>Яичная лапша с говядиной</h3><p>В меру острая, порция большая.</p></div>
+    <div class="dish"><span class="badge">закуска</span><h3>Спринг-роллы с креветками и манго</h3><p>Рисовая бумага, зелень, фруктовый соус с арахисом.</p><span class="pr">640 ₽</span></div>
+    <div class="dish"><span class="badge">закуска</span><h3>Бань бао</h3><p>Паровая булочка с яйцом, куриным фаршем и грибами.</p><span class="pr">440 ₽</span></div>
+    <div class="dish"><span class="badge">десерт</span><h3>Жареные бананы с нутеллой</h3><p>В темпуре, с шоколадным соусом.</p><span class="pr">410 ₽</span></div>
+  </div>
+  <p class="sub" style="margin-top:18px">А ещё пад тай, ком ранг, поке, манго-шейк с маракуйей и кофе по-вьетнамски со сгущёнкой.</p>
+</div></section>
+
+<section id="app"><div class="wrap">
+  <div class="app">
+    <div class="big">−10%</div>
+    <div><h3>На самовывоз через приложение</h3><p>Закажите заранее в приложении «Фобошной» и заберите без ожидания. Есть своя доставка по району.</p></div>
+    <a class="btn" href="https://vk.com/fobomsk" target="_blank" rel="noopener">Ссылка на приложение</a>
+  </div>
+</div></section>
+
+<section id="reviews"><div class="wrap">
+  <h2>5,0 на Яндекс Картах</h2>
+  <div class="quotes">
+    <blockquote><p>Бульон как в Ханое — честный, душевный, на костях</p><cite>Татьяна, Яндекс Карты</cite></blockquote>
+    <blockquote><p>Самый вкусный фо бо, который я ела помимо Ханоя</p><cite>Рената, Яндекс Карты</cite></blockquote>
+    <blockquote><p>Будто пришёл в гости к друзьям</p><cite>Мария, Яндекс Карты</cite></blockquote>
+  </div>
+</div></section>
+
+<section id="visit"><div class="wrap">
+  <h2>Как нас найти</h2>
+  <div class="visit">
+    <dl>
+      <div class="row"><dt>Адрес</dt><dd>Москва, ул. Римского-Корсакова, 11, корп. 7</dd></div>
+      <div class="row"><dt>Метро</dt><dd>Отрадное</dd></div>
+      <div class="row"><dt>Часы</dt><dd>Ежедневно, 11:00–23:00</dd></div>
+      <div class="row"><dt>Телефон</dt><dd>+7 (985) 565-55-87<button class="copy" id="copyPhone" type="button">Скопировать</button></dd></div>
+      <div class="cta" style="margin-top:4px">
+        <a class="btn" style="background:var(--fg);color:var(--bg);border-color:var(--fg)" href="tel:+79855655587">Позвонить</a>
+        <a class="btn" href="https://yandex.ru/maps/org/foboshnaya/154068420921/" target="_blank" rel="noopener">Маршрут</a>
+      </div>
+    </dl>
+    <div class="brickcard">
+      <h3>Ищите оранжевый кирпичный дом</h3>
+      <p>Мы на первом этаже жилого комплекса, вход с улицы. Над дверью круглая вывеска «ФО БО» с палочками.</p>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>Фобошная · вьетнамская кухня · Отрадное</span><span>Демо-версия сайта</span></div></footer>
+
+<script>
+var state={base:'bo',hot:'1',add:['lime','herbs']};
+var NAMES={bo:'Фо бо с говядиной',bofry:'Фо бо с жареной говядиной',ga:'Фо га с курицей',tom:'Том ям с морепродуктами'};
+var HOT={'0':'Без остроты','1':'Средняя острота','2':'Остро'};
+var ADD={lime:'лайм',herbs:'зелень',sprouts:'ростки сои',ginger:'имбирь'};
+var NS='http://www.w3.org/2000/svg';
+function el(tag,attrs){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);return e}
+function draw(){
+  var broth=document.getElementById('broth');
+  broth.setAttribute('fill',state.base==='tom'?'#E0672F':state.base==='ga'?'#E7B866':'#D99A4E');
+  if(state.hot==='2')broth.setAttribute('fill','#D14A2A');
+  var meat=document.getElementById('meat');meat.innerHTML='';
+  var xs=[95,135,175,205];
+  xs.forEach(function(x,i){
+    if(state.base==='tom'){meat.appendChild(el('path',{d:'M'+(x-12)+' '+(92+i%2*6)+' q12 -16 24 0 q-12 8 -24 0',fill:'#F08A64',stroke:'#B4472A','stroke-width':2}))}
+    else if(state.base==='ga'){meat.appendChild(el('rect',{x:x-14,y:84+i%2*6,width:28,height:12,rx:5,fill:'#F4E2C6',stroke:'#C99B5D','stroke-width':2}))}
+    else{meat.appendChild(el('ellipse',{cx:x,cy:90+i%2*6,rx:16,ry:7,fill:state.base==='bofry'?'#7A4024':'#A5634A'}))}
+  });
+  var ex=document.getElementById('extras');ex.innerHTML='';
+  if(state.add.indexOf('herbs')>-1)[[80,84],[120,80],[160,86],[220,82]].forEach(function(p){ex.appendChild(el('path',{d:'M'+p[0]+' '+p[1]+' q6 -10 12 0 q-6 6 -12 0',fill:'#4F9A5B'}))});
+  if(state.add.indexOf('sprouts')>-1)[[70,100],[150,104],[230,98]].forEach(function(p){ex.appendChild(el('path',{d:'M'+p[0]+' '+p[1]+' q10 -4 18 2',fill:'none',stroke:'#F6F0DA','stroke-width':3,'stroke-linecap':'round'}))});
+  if(state.add.indexOf('ginger')>-1)[[110,104],[190,102]].forEach(function(p){ex.appendChild(el('rect',{x:p[0],y:p[1],width:10,height:6,rx:2,fill:'#F2D27A'}))});
+  if(state.add.indexOf('lime')>-1){ex.appendChild(el('circle',{cx:250,cy:84,r:14,fill:'#9BC84A',stroke:'#5D8A2B','stroke-width':2}));ex.appendChild(el('path',{d:'M236 84 h28 M250 70 v28',stroke:'#E9F2C9','stroke-width':1.5}))}
+  if(state.hot!=='0'){var n=state.hot==='2'?5:2;for(var i=0;i<n;i++)ex.appendChild(el('circle',{cx:100+i*28,cy:102+(i%2)*4,r:3.5,fill:'#C1121F'}))}
+  document.getElementById('bowlName').textContent=NAMES[state.base];
+  var adds=state.add.map(function(a){return ADD[a]});
+  document.getElementById('bowlDesc').textContent=HOT[state.hot]+(adds.length?' · '+adds.join(', '):'');
+}
+document.querySelectorAll('.chips').forEach(function(group){
+  var key=group.dataset.key,multi=group.dataset.multi;
+  group.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(multi){
+        var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');
+        state.add=Array.prototype.filter.call(group.querySelectorAll('button'),function(x){return x.getAttribute('aria-pressed')==='true'}).map(function(x){return x.dataset.v});
+      }else{
+        group.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+        b.setAttribute('aria-pressed','true');state[key]=b.dataset.v;
+      }
+      draw();
+    });
+  });
+});
+document.getElementById('copyPhone').addEventListener('click',function(e){
+  var b=e.currentTarget;
+  try{navigator.clipboard.writeText('+79855655587').then(function(){b.textContent='Скопировано'},function(){b.textContent='+79855655587'})}catch(err){b.textContent='+79855655587'}
+});
+draw();
+</script>
+
+</body>
+</html>
